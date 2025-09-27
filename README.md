@@ -2,7 +2,7 @@
 
 A visually delightful web app offering a curated collection of family-friendly breakfast ideas with a whimsical, illustrative design.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/zaffys/breakfast-made-fun-app)
 
 SunriseFeasts is a visually captivating web application designed to inspire families with a delightful collection of breakfast recipes. The core of the application is its whimsical and illustrative design, making meal discovery a fun activity for both parents and children. Users can explore recipes through beautifully illustrated categories like 'Quick & Easy', 'Healthy Options', and 'Weekend Treats'. Each recipe is presented on a detailed page with clear ingredients, step-by-step instructions, and a unique illustration. A key feature is the ability for users to 'favorite' recipes, saving them for quick access later. The entire experience is crafted to be intuitive, engaging, and aesthetically pleasing, turning the daily question of 'what's for breakfast?' into an exciting journey.
 
@@ -94,7 +94,7 @@ This command will build the application and deploy it to your Cloudflare account
 
 Alternatively, you can deploy directly from your GitHub repository.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/zaffys/breakfast-made-fun-app)
 
 ## License
 
