@@ -1,101 +1,67 @@
-# SunriseFeasts
-
-A visually delightful web app offering a curated collection of family-friendly breakfast ideas with a whimsical, illustrative design.
-
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/zaffys/breakfast-made-fun-app)
-
-SunriseFeasts is a visually captivating web application designed to inspire families with a delightful collection of breakfast recipes. The core of the application is its whimsical and illustrative design, making meal discovery a fun activity for both parents and children. Users can explore recipes through beautifully illustrated categories like 'Quick & Easy', 'Healthy Options', and 'Weekend Treats'. Each recipe is presented on a detailed page with clear ingredients, step-by-step instructions, and a unique illustration. A key feature is the ability for users to 'favorite' recipes, saving them for quick access later. The entire experience is crafted to be intuitive, engaging, and aesthetically pleasing, turning the daily question of 'what's for breakfast?' into an exciting journey.
-
-## Key Features
-
--   **Whimsical Illustrative Design:** A unique, sketchy, and playful visual style that engages users.
--   **Curated Recipe Categories:** Browse recipes in categories like 'Quick & Easy', 'Healthy Options', and 'Weekend Treats'.
--   **Detailed Recipe View:** Each recipe includes prep time, cook time, ingredients, and step-by-step instructions.
--   **Client-Side Favorites:** Save your favorite recipes for quick access using browser Local Storage.
--   **Responsive Perfection:** A flawless and beautiful experience on any device, from mobile phones to desktops.
--   **Playful Typography:** Uses 'Fredericka the Great' and 'Playfair Display' for a unique and charming feel.
-
-## Technology Stack
-
--   **Frontend:** React, Vite, React Router
--   **Styling:** Tailwind CSS, shadcn/ui
--   **State Management:** Zustand
--   **Animations:** Framer Motion
--   **Icons:** Lucide React
--   **Backend:** Hono on Cloudflare Workers
--   **Storage:** Cloudflare Durable Objects
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`c3`](https://developers.cloudflare.com/pages/get-started/c3).
 
 ## Getting Started
 
-Follow these instructions to get a local copy up and running for development and testing purposes.
+First, run the development server:
 
-### Prerequisites
-
--   [Bun](https://bun.sh/) installed on your machine.
--   [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/) for Cloudflare deployment.
-
-### Installation
-
-1.  **Clone the repository:**
-    ```sh
-    git clone https://github.com/your-username/sunrise_feasts.git
-    cd sunrise_feasts
-    ```
-
-2.  **Install dependencies:**
-    ```sh
-    bun install
-    ```
-
-### Running Locally
-
-To start the development server, run the following command:
-
-```sh
-bun run dev
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-This will start the Vite development server, typically available at `http://localhost:3000`. The application will automatically reload when you make changes to the source files.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Usage
+## Cloudflare integration
 
-Once the application is running, you can:
--   Browse featured recipes on the home page.
--   Click on a category to view a list of related recipes.
--   Select a recipe card to see its detailed instructions and ingredients.
--   Click the heart icon on a recipe detail page to add it to your favorites.
--   Navigate to the "Favorites" page to see all your saved recipes.
+Besides the `dev` script mentioned above `c3` has added a few extra scripts that allow you to integrate the application with the [Cloudflare Pages](https://pages.cloudflare.com/) environment, these are:
+  - `pages:build` to build the application for Pages using the [`@cloudflare/next-on-pages`](https://github.com/cloudflare/next-on-pages) CLI
+  - `preview` to locally preview your Pages application using the [Wrangler](https://developers.cloudflare.com/workers/wrangler/) CLI
+  - `deploy` to deploy your Pages application using the [Wrangler](https://developers.cloudflare.com/workers/wrangler/) CLI
 
-## Development
+> __Note:__ while the `dev` script is optimal for local development you should preview your Pages application as well (periodically or before deployments) in order to make sure that it can properly work in the Pages environment (for more details see the [`@cloudflare/next-on-pages` recommended workflow](https://github.com/cloudflare/next-on-pages/blob/main/internal-packages/next-dev/README.md#recommended-development-workflow))
 
--   **Frontend:** All frontend code is located in the `src/` directory.
-    -   Pages are in `src/pages/`.
-    -   Reusable components are in `src/components/`.
-    -   The Zustand store for favorites is in `src/store/`.
--   **Backend:** Backend logic using Hono is in the `worker/` directory. New API routes can be added in `worker/user-routes.ts`.
--   **Shared Types:** TypeScript types shared between the frontend and backend are in `shared/types.ts`.
+### Bindings
 
-## Deployment
+Cloudflare [Bindings](https://developers.cloudflare.com/pages/functions/bindings/) are what allows you to interact with resources available in the Cloudflare Platform.
 
-This project is configured for easy deployment to Cloudflare Pages.
+You can use bindings during development, when previewing locally your application and of course in the deployed application:
 
-1.  **Build the project:**
-    ```sh
-    bun run build
-    ```
+- To use bindings in dev mode you need to define them in the `next.config.js` file under `setupDevBindings`, this mode uses the `next-dev` `@cloudflare/next-on-pages` submodule. For more details see its [documentation](https://github.com/cloudflare/next-on-pages/blob/05b6256/internal-packages/next-dev/README.md).
 
-2.  **Deploy to Cloudflare:**
-    Make sure you are logged in to Wrangler, then run:
-    ```sh
-    bun run deploy
-    ```
+- To use bindings in the preview mode you need to add them to the `pages:preview` script accordingly to the `wrangler pages dev` command. For more details see its [documentation](https://developers.cloudflare.com/workers/wrangler/commands/#dev-1) or the [Pages Bindings documentation](https://developers.cloudflare.com/pages/functions/bindings/).
 
-This command will build the application and deploy it to your Cloudflare account.
+- To use bindings in the deployed application you will need to configure them in the Cloudflare [dashboard](https://dash.cloudflare.com/). For more details see the  [Pages Bindings documentation](https://developers.cloudflare.com/pages/functions/bindings/).
 
-Alternatively, you can deploy directly from your GitHub repository.
+#### KV Example
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/zaffys/breakfast-made-fun-app)
+`c3` has added for you an example showing how you can use a KV binding.
 
-## License
+In order to enable the example:
+- Search for javascript/typescript lines containing the following comment:
+  ```ts
+  // KV Example:
+  ```
+  and uncomment the commented lines below it (also uncomment the relevant imports).
+- In the `wrangler.jsonc` file add the following configuration line:
+  ```
+  "kv_namespaces": [{ "binding": "MY_KV_NAMESPACE", "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }],
+  ```
+- If you're using TypeScript run the `cf-typegen` script to update the `env.d.ts` file:
+  ```bash
+  npm run cf-typegen
+  # or
+  yarn cf-typegen
+  # or
+  pnpm cf-typegen
+  # or
+  bun cf-typegen
+  ```
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+After doing this you can run the `dev` or `preview` script and visit the `/api/hello` route to see the example in action.
+
+Finally, if you also want to see the example work in the deployed application make sure to add a `MY_KV_NAMESPACE` binding to your Pages application in its [dashboard kv bindings settings section](https://dash.cloudflare.com/?to=/:account/pages/view/:pages-project/settings/functions#kv_namespace_bindings_section). After having configured it make sure to re-deploy your application.
